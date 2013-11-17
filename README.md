@@ -100,3 +100,5 @@ npm test
 ```
 
 ## License
+
+MIT
