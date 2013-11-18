@@ -11,8 +11,8 @@ function isMark(code) {
 }
 
 function ResponseParser() {
-  this. currentCode = 0;
-  this. buffer = [];
+  this.currentCode = 0;
+  this.buffer = [];
 
   stream.Transform.call(this, {
     objectMode: true
@@ -23,7 +23,20 @@ util.inherits(ResponseParser, stream.Transform);
 
 ResponseParser.prototype._transform = function(chunk, encoding, done) {
   var data = chunk.toString();
-  var lines = data.split(/\r?\n/).filter(function(l) {
+  if (this._lastChunk) {
+    data = this._lastChunk + data;
+    this._lastChunk = '';
+  }
+
+  var lines = data.split(/\r?\n/);
+
+  // Check if last line contained a '\n' or was truncated, in which case we store
+  // it away to add it when a new write happens
+  if (lines && lines.length && lines[lines.length - 1] !== '') {
+    this._lastChunk = lines.pop();
+  }
+
+  lines = lines.filter(function(l) {
     return !!l;
   });
 
