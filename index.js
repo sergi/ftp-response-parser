@@ -1,6 +1,11 @@
 var util = require('util')
 var stream = require('stream');
 
+// Support for Node 0.8 users
+if (!stream.Transform) {
+  stream = require('readable-stream');
+}
+
 var RE_RES = /^(\d\d\d)\s(.*)/;
 var RE_MULTI = /^(\d\d\d)-/;
 

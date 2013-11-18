@@ -13,14 +13,16 @@
   "bugs": {
     "url": "https://github.com/sergi/ftp-response-parser/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "readable-stream": "~1.1.9"
+  },
   "devDependencies": {
     "tape": "~2.1.0",
     "resumer": "~0.0.0"
   },
   "main": "./index.js",
   "engines": {
-    "node": ">=0.6.21"
+    "node": ">=0.8.0"
   },
   "scripts": {
     "test": "node test.js"
