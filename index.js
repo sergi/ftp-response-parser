@@ -1,12 +1,7 @@
 var util = require('util')
-var stream = require('stream');
+var stream = require('readable-stream');
 
-// Support for Node 0.8 users
-if (!stream.Transform) {
-  stream = require('readable-stream');
-}
-
-var RE_RES = /^(\d\d\d)\s(.*)/;
+var RE_RES = /^(\d\d\d)\s.*/;
 var RE_MULTI = /^(\d\d\d)-/;
 
 // Codes from 100 to 200 are FTP marks
@@ -14,6 +9,8 @@ function isMark(code) {
   code = parseInt(code, 10);
   return code > 100 && code < 200;
 }
+
+module.exports = ResponseParser;
 
 function ResponseParser() {
   this.currentCode = 0;
@@ -83,4 +80,3 @@ ResponseParser.prototype._transform = function(chunk, encoding, done) {
   done();
 };
 
-module.exports = ResponseParser;

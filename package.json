@@ -1,7 +1,7 @@
 {
   "name": "ftp-response-parser",
   "id": "ftp-response-parser",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Parser for FTP server responses",
   "keywords": ["ftp", "response", "protocol", "files", "server", "client", "async"],
   "author": "Sergi Mansilla <sergi.mansilla@gmail.com> (http://sergimansilla.com)",
@@ -14,7 +14,7 @@
     "url": "https://github.com/sergi/ftp-response-parser/issues"
   },
   "dependencies": {
-    "readable-stream": "~1.1.9"
+    "readable-stream": "^1.0.31"
   },
   "devDependencies": {
     "tape": "~2.1.0",
